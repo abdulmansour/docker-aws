@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run -e CI=true abdulmansour/docker-aws npm run test
+
+deploy:
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-web-app"
+  env: "Dockerwebapp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-115008769602"
+  bucket_path: "docker-web-app"
+  on:
+    branch: master
+
